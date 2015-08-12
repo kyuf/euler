@@ -1,0 +1,9 @@
+#test palindrome checker
+def is_palindrome(lst):
+    tmp = len(lst) - 1
+    for i in range(len(lst) // 2 - 1):
+        if lst[i] != lst[tmp - i]:
+            return False
+    return True
+
+print 3 // 2
