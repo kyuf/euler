@@ -36,8 +36,8 @@ def prime_pan(a, b):
 		if is_prime(n, prime_list) and is_pandigital(n):
 			max_n = n
 
-#seeding prime_list with 2 to allow odd incrementation
-prime_list = [2]
+#do not need to include 2 in prime_list since all numbers checked will be odd
+prime_list = []
 
 #max pandigital number for 7-digit is 7654321
 for n in range(3, int(7654321 ** 0.5) + 1, 2):
