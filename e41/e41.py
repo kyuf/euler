@@ -1,5 +1,4 @@
 #euler 41
-#preliminary
 """
 We shall say that an n-digit number is pandigital if it makes use of all the digits 1 to n exactly once. For example, 2143 is a 4-digit pandigital and is also prime.
 
@@ -33,7 +32,7 @@ def prime_pan(a, b):
 	global max_n
 	global prime_list
 	for n in range(a, b, 2):
-		if is_prime(n, prime_list) and is_pandigital(n):
+		if is_pandigital(n) and is_prime(n, prime_list):
 			max_n = n
 
 #do not need to include 2 in prime_list since all numbers checked will be odd
