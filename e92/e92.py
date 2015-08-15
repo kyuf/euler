@@ -52,13 +52,11 @@ set_bad = {1}
 n = 1
 
 while n != 10000000:
-	#initialize seen set with starting number
-	seen = {n}
 	
 	#chain until a repeat number appears
 	hold_next = next_chain(n)
 	next_n = hold_next
-	while True: #next_n not in seen:
+	while True:
 		#increment count89 when upon arrival at 89 or in set89
 		if next_n == 89 or next_n in set89:
 			set89.add(hold_next)
@@ -69,7 +67,6 @@ while n != 10000000:
 		if next_n in set_bad:
 			set_bad.add(hold_next)
 			break
-		seen.add(next_n)
 
 		#terminate if arrive at 1
 		if next_n == 1:
