@@ -28,15 +28,28 @@ def is_pandigital(n):
 			return False
 	return True
 
-prime_list = [2, 3, 5, 7]
-max_n = 0
+#function to check given range for prime pandigital numbers
+def prime_pan(a, b):
+	global max_n
+	global prime_list
+	for n in range(a, b, 2):
+		if is_prime(n, prime_list) and is_pandigital(n):
+			max_n = n
+
+#seeding prime_list with 2 to allow odd incrementation
+prime_list = [2]
 
 #max pandigital number for 7-digit is 7654321
-for n in range(11, 7654322, 2):
+for n in range(3, int(7654321 ** 0.5) + 1, 2):
 	if is_prime(n, prime_list):
 		prime_list.append(n)
-		if len(str(n)) == 4 or len(str(n)) == 7:
-			if is_pandigital(n):
-				max_n = n
+
+max_n = 0
+
+#checking 4 digit pandigitals
+prime_pan(1235, 4322)
+
+#checking 7 digit pandigitals
+prime_pan(1234567, 7654322)
 
 print(max_n)
