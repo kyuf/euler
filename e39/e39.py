@@ -13,7 +13,8 @@ from gen_int_tri import triangles
 max_p = None
 max_n = 0
 
-for p in range(12, 1001):
+#even/odd analysis on a and b shows that p must be even
+for p in range(12, 1001, 2):
     n = triangles(p)
     if n > max_n:
         max_n = n
