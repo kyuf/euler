@@ -28,20 +28,26 @@ class Word:
     #check if n digits match letters in word
     def match(self, n):
         self.check = {}
+        #set of digits that have not been assigned yet
+        available = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"}
         n_str = str(n)
         for i in range(len(self.word)):
             if self.word[i] in self.check:
                 if self.check[self.word[i]] != n_str[i]:
                     return False
             else:
+                if n_str[i] not in available:
+                    return False
                 self.check[self.word[i]] = n_str[i]
+                available.remove(n_str[i])
         self.n = n
         return True
     
     #check if two words are anagramic squares based on one's letter digits
     def is_pair(self, other):
         new_square = ""
-        if self.check[other.word[0]] == 0:
+        #starting digit cannot be 0
+        if self.check[other.word[0]] == "0":
             return False
         for i in other.word:
             new_square += self.check[i]
@@ -72,6 +78,7 @@ word_length_dic = {}
 #key in word_length_dic is the number of letters in word
 for i in word_list:
     length = len(i)
+    #valid length is > 1
     if length > 1:
         if length in word_length_dic:
             word_length_dic[length].append(Word(i))
@@ -101,18 +108,19 @@ for word_length, n_length_words in word_length_dic.items():
                 for n in N_values["squares"]:
                     if n_length_words[i].match(n):
                         if n_length_words[i].is_pair(n_length_words[j]):
+                            #output check
+                            """
                             print(n_length_words[i].check)
                             print(n_length_words[j].n)
+                            """
                             if n_length_words[i].n > max_n:
                                 max_n = n_length_words[i].n
-                            elif n_length_words[j].n > max_n:
+                            if n_length_words[j].n > max_n:
                                 max_n = n_length_words[j].n
-                
+                #output anagram pairs
+                """
                 print(n_length_words[i], n_length_words[j])
+                """
             j += 1
             
 print(max_n)
-care = Word("care")
-race = Word("race")
-care.match(1296)
-print(care.is_pair(race))
