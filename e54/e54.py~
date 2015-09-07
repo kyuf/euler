@@ -166,9 +166,49 @@ class Player:
             else:
                 #pair
                 self.rank = 2
+    
+    #compare high cards when tie
+    def compare_high(self, other, h):
+        while self.high[h]:
+            #set current high value
+            p1 = self.high[h].pop()
+            p2 = other.high[h].pop()
+            
+            if p1 > p2:
+                return 1
+            elif p1 < p2:
+                return 0
+        
+        #in case of tied values
+        if h == 7:
+            return self.compare_high(other, 2)
+        else:
+            return self.compare_high(other, 1)
+                
+    #return 1 if self beats other else 0
+    def vs(self, other):
+        if self.rank > other.rank:
+            return 1
+        elif self.rank < other.rank:
+            return 0
+        else:
+            #check high ones
+            if self.rank in {1, 5, 6, 9}:
+                return self.compare_high(other, 1)
+            #check high twos
+            elif self.rank in {2, 3}:
+                return self.compare_high(other, 2)
+            #check high threes
+            elif self.rank in {4, 7}:
+                return self.compare_high(other, 3)
+            #check high fours
+            else:
+                return self.compare_high(other, 4)
                 
 player1 = Player()
 player2 = Player()
+
+p1_wins = 0
 
 with open("poker.txt", "r") as f:
     for line in f:
@@ -180,10 +220,14 @@ with open("poker.txt", "r") as f:
         player2.new_hand(cards[5:])
         print("Player 1: ", player1)
         print("Player 2: ", player2)
+        
+        #track outcome
+        p1_wins += player1.vs(player2)
 
+print(p1_wins)
+
+"""
 test = Player()
-test.new_hand(["TC", "JC", "QC", "KC", "8C"])
-print(test.is_straight)
-print(test.is_royal)
-print(test.is_flush)
+test.new_hand(["3S", "2H", "6C", "4D", "AC"])
 print(test.rank)
+"""
