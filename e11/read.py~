@@ -1,4 +1,0 @@
-#testing read file
-with open("e11.txt", "r") as my_file:
-    while True:
-        print my_file.readline()
