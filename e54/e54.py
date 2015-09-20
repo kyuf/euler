@@ -213,7 +213,7 @@ p1_wins = 0
 with open("poker.txt", "r") as f:
     for line in f:
         #remove \n and spaces in each line
-        cards = line.splitlines()[0].split(" ")
+        cards = line.rstrip().split(" ")
         
         #assign cards to players
         player1.new_hand(cards[:5])
