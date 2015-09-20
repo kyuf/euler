@@ -18,6 +18,8 @@ for i in range(2, 101):
         n //= 10
     """
 
+print(n)
+
 sum_n = 0
 
 for i in str(n):
