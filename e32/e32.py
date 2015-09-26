@@ -17,10 +17,11 @@ pandigital = []
 sum_n = 0
 
 for a in perm(A):
-    tmp = int(a[5] + a[6] + a[7] + a[8])
+    a = "".join(a)
+    tmp = int(a[5:])
     if tmp not in pandigital:
-        if int(a[0]) * int(a[1] + a[2] + a[3] + a[4]) == tmp or int(a[0] + a[1]) * int(a[2] + a[3] + a[4]) == tmp:
+        if int(a[0]) * int(a[1:5]) == tmp or int(a[:2]) * int(a[2:5]) == tmp:
             pandigital.append(tmp)
             sum_n += tmp
 
-print sum_n
+print(sum_n)
