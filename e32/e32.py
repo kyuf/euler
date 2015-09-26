@@ -8,7 +8,7 @@ def perm(A):
     else:
         for i in range(len(A)):
             x = A[i]
-            xs = A[:i] + A[i + 1:]
+            xs = A[:i] + A[(i+1):]
             for p in perm(xs):
                 yield [x] + p
 
